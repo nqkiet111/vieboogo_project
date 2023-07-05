@@ -9,6 +9,7 @@ class Ncc extends Model
 {
     use HasFactory;
     protected $table = 'nhacungcap';
+    protected $primaryKey = 'ncc_id';
     protected $fillable = [
         'ncc_logo',
         'ncc_ten',

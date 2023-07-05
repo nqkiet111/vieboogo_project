@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+
 </head>
 <!--
 `body` tag options:
@@ -59,14 +61,14 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('http://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
     <!-- Bootstrap -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE -->
     <script src="{{ asset('dist/js/adminlte.js')}}"></script>
-    <!--Modal-->
-    <script src="{{ asset('dist/js/modal.js') }}"></script>
     <!-- OPTIONAL SCRIPTS -->
     <script src="{{ asset('plugins/chart.js/Chart.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->

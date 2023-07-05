@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Layouts.master');
-});
+
 
 Route::prefix('admin')->group(function(){
+    Route::get('/', function () {
+        return view('Layouts.master');
+    });
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
+        Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
     });
 
 });

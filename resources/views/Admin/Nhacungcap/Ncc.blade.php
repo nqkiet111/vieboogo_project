@@ -23,7 +23,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">Danh sách nhà cung cấp</h3>
                                 <div class="text-right">
-                                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#add_ncc"> Thêm
+                                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#add_ncc">
+                                        Thêm
                                         mới</button>
                                 </div>
                                 <div class="text-center">
@@ -38,12 +39,21 @@
                                             <th>Tên nhà cung cấp</th>
                                             <th>Địa chỉ</th>
                                             <th>Số điện thoại</th>
-                                            <th width="125"></th>
+                                            <th width="125">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                        $stt = 0;
+                                        @endphp
+                                        @foreach ($data_ncc as $ncc)
                                         <tr>
+                                            <td>{{++$stt}}</td>
+                                            <td>{{$ncc->ncc_ten}}</td>
+                                            <td>{{$ncc->ncc_diachi}}</td>
+                                            <td>{{$ncc->ncc_sodt}}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                     </tfoot>
@@ -62,39 +72,40 @@
         <!-- /.content -->
     </div>
     @include('Admin.Nhacungcap.Add')
+    <script src="{{asset('dist/js/modal.js')}}"></script>
     <script>
-        //Tạo mới nhà cung cấp với phương thức ajax
-        $("#add_new_ncc").on('submit', function(event) {
+        // Tạo mới nhà cung cấp với phương thức AJAX
+        $(document).on('submit', '#add_new_ncc', function(event) {
             event.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+
+            // Lấy thông tin form
+            var formData = new FormData(this);
+            formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+            // Gửi AJAX request
             $.ajax({
                 type: 'POST',
-                url: "",
-                data: new FormData(this),
+                url: "{{ route('ncc.save') }}",
+                data: formData,
                 dataType: 'JSON',
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(data) {
                     location.reload();
-                    $('#add_gv').modal('hide');
+                    $('#add_ncc').modal('hide');
                 },
                 error: function(data) {
-                    $('#tengvError').addClass('d-none');
-                    $('#emailError').addClass('d-none');
-                    $('#ngaysinhError').addClass('d-none');
-                    $('#bomonError').addClass('d-none');
+                    // Xóa class d-none của tất cả các lỗi
+                    $('#add_new_ncc .text-danger').addClass('d-none');
+
                     var errors = data.responseJSON;
-                    if ($.isEmptyObject(errors) == false) {
+                    if (!$.isEmptyObject(errors)) {
                         $.each(errors.errors, function(key, value) {
-                            var ErrorID = '#' + key + 'Error';
-                            $(ErrorID).removeClass("d-none");
-                            $(ErrorID).text(value);
-                        })
+                            var errorID = '#' + key + 'Error';
+                            $(errorID).removeClass("d-none");
+                            $(errorID).text(value);
+                        });
                     }
                 }
             });
