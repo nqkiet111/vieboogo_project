@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NccController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin.index');
+    return view('Layouts.master');
 });
+
+Route::prefix('admin')->group(function(){
+    Route::prefix('nhacungcap')->group(function () {
+        Route::get('/', [NccController::class, 'index'])->name('ncc.index');
+    });
+
+});
+
