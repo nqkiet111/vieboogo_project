@@ -11,7 +11,8 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
-    
+    <!--Sweet Alert-->
+    <link rel="stylesheet" href="{{ asset('dist/css/sweetalert2.min.css') }}">
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -76,6 +77,7 @@
     <script src="{{ asset('dist/js/adminlte.js')}}"></script>
     <script src="{{ asset('plugins/summernote/summernote.js')}}"></script>
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{ asset('dist/js/sweetalert2.min.js') }}"></script>
 </body>
 
 </html>

@@ -21,6 +21,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
         Route::get('/update', [NccController::class, 'update'])->name('ncc.update');
+        Route::get('/delete/{ma_ncc}', [NccController::class, 'delete'])->name('ncc.delete');
+
     });
 
 });

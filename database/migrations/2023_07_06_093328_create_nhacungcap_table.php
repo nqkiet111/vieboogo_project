@@ -30,6 +30,7 @@ class CreateNhacungcapTable extends Migration
             $table->string('ncc_sotknh1');
             $table->string('ncc_tentknh2')->nullable();
             $table->string('ncc_sotknh2')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

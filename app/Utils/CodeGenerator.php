@@ -3,35 +3,31 @@
 namespace App\Utils;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class CodeGenerator
 {
-    public static function generateCode($prefix, $modelName, $idColumnName, $codeColumnName)
+    public static function generateCode($prefix, $tableName, $idColumnName, $codeColumnName)
     {
         // Lấy ngày hiện tại
         $currentDate = Carbon::now();
-
-        // Giải quyết tên model thành đối tượng model
-        $model = App::make($modelName);
+        $formattedDate = $currentDate->format('d-m-Y');
 
         // Lấy số cuối cùng trong cơ sở dữ liệu
-        $lastNumber = $model::orderBy($idColumnName, 'desc')->value($codeColumnName);
+        $lastCode = DB::table($tableName)->orderBy($idColumnName, 'desc')->value($codeColumnName);
 
-        // Kiểm tra số cuối cùng
-        if ($lastNumber) {
-            // Tách phần số từ mã hiện tại (Ví dụ: NCC0001/10/05/2023 -> 0001)
-            $lastNumber = explode('/', $lastNumber)[0];
+        // Tách phần số từ mã hiện tại
+        $lastNumber = intval(substr($lastCode, strlen($prefix)));
 
-            // Tăng số cuối cùng lên 1
-            $newNumber = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
-        } else {
-            // Nếu không có số cuối cùng, bắt đầu từ 0001
-            $newNumber = '0001';
+        // Tăng số cuối cùng lên 1
+        $newNumber = $lastNumber + 1;
+
+        // Kiểm tra giá trị mới nhất, nếu vượt quá 9999, thêm vào NCC10000
+        if ($newNumber > 9999) {
+            $newNumber = 10001;
         }
-
-        // Tạo mã ngẫu nhiên theo định dạng {prefix}xxxx/dd/mm/yyyy
-        $code = $prefix . $newNumber . '/' . $currentDate->format('d/m/Y');
+        // Tạo mã ngẫu nhiên theo định dạng {prefix}{number}-{date}
+        $code = $prefix . str_pad($newNumber, 4, '0', STR_PAD_LEFT) . '-' . $formattedDate;
 
         return $code;
     }
