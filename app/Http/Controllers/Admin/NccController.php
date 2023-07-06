@@ -7,6 +7,9 @@ use App\Models\Ncc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Utils\CodeGenerator;
+
+
 class NccController extends Controller
 {
     public function index() 
@@ -48,7 +51,9 @@ class NccController extends Controller
                 'ncc_diachi.required' => 'Vui lòng nhập địa chỉ',
             ]
         );
+        $code_ncc = CodeGenerator::generateCode('NCC', 'App\Models\Ncc', 'ncc_id','ma_ncc');
         $ncc = Ncc::create([
+            'ma_ncc' => $code_ncc,
             'ncc_ten' => $request->input('ncc_ten'),
             'ncc_email' => $request->input('ncc_email'),
             'ncc_sodt' => $request->input('ncc_sodt'),

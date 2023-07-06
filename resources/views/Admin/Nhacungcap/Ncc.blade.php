@@ -52,6 +52,13 @@
                                                 <td>{{ $ncc->ncc_ten }}</td>
                                                 <td>{{ $ncc->ncc_diachi }}</td>
                                                 <td>{{ $ncc->ncc_sodt }}</td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-sm btn-info" data-toggle="modal" data-bmid="{{ $ncc->bmid }}"
+                                                      data-mancc="{{ $ncc->mancc }}" data-ngaysinh="{{ $ncc->ngaysinh }}" data-email="{{ $ncc->email }}"
+                                                      data-password="{{ $ncc->password }}" data-tenncc="{{ $ncc->tenncc }}" data-nccid="{{ $ncc->id }}"
+                                                      data-target="#edit_gv"><i class="fa fa-pen">
+                                                        Sửa</i></a>
+                                                  </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -71,7 +78,8 @@
         </section>
         <!-- /.content -->
     </div>
-    @include('Admin.Nhacungcap.Add')
+    @include('Admin.Nhacungcap.AddModal')
+    @include('Admin.Nhacungcap.UpdateModal')
     <script src="{{ asset('dist/js/modal.js') }}"></script>
     <script>
         var saveNccRoute = "{{ route('ncc.save') }}";
