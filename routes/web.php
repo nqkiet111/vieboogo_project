@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DanhmucdiadiemController;
 use App\Http\Controllers\Admin\NccController;
+use App\Models\Danhmucdiadiem;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,14 @@ Route::prefix('admin')->group(function(){
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
         Route::get('/update', [NccController::class, 'update'])->name('ncc.update');
     });
+
+    Route::prefix('danhmucdiadiem')->group(function () {
+        Route::get('/', [DanhmucdiadiemController::class, 'index'])->name('dmdd.index');
+        // Route::post('/save', [DanhmucdiadiemController::class, 'save'])->name('ncc.save');
+        // Route::get('/update', [DanhmucdiadiemController::class, 'update'])->name('ncc.update');
+    });
+
+
 
 });
 
