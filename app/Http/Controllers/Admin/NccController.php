@@ -7,11 +7,15 @@ use App\Models\Ncc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Utils\CodeGenerator;
+
+
 class NccController extends Controller
 {
     public function index() 
     {
-        $data_ncc = Ncc::all();
+        $data_ncc = Ncc::where('status', 0)->get();
+        // dd($data_ncc);
         $manage_ncc = view('Admin.Nhacungcap.Ncc')->with('data_ncc',$data_ncc);
         return view('Layouts.master')->with('manage_ncc',$manage_ncc);
     }
@@ -48,7 +52,9 @@ class NccController extends Controller
                 'ncc_diachi.required' => 'Vui lòng nhập địa chỉ',
             ]
         );
+        $code_ncc = CodeGenerator::generateCode('NCC', 'nhacungcap', 'ncc_id','ma_ncc');
         $ncc = Ncc::create([
+            'ma_ncc' => $code_ncc,
             'ncc_ten' => $request->input('ncc_ten'),
             'ncc_email' => $request->input('ncc_email'),
             'ncc_sodt' => $request->input('ncc_sodt'),
@@ -71,5 +77,11 @@ class NccController extends Controller
         $tb = Toastr::success('Cập nhật nhà cung cấp thành công', 'Thành công');
         $html = Redirect::to('/admin/nhacungcap')->with('tb', $tb);
         return response()->json(['success' => true, 'html' => $html]);
+    }
+    public function delete($ma_ncc)
+    {
+        $del = Ncc::where('ma_ncc', $ma_ncc)->update(['status' => 1]);
+        Toastr::success('Xóa nhà cung cấp thành công!!!', 'Thành công');
+        return redirect()->route('ncc.index');
     }
 }

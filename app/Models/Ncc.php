@@ -11,6 +11,7 @@ class Ncc extends Model
     protected $table = 'nhacungcap';
     protected $primaryKey = 'ncc_id';
     protected $fillable = [
+        'ma_ncc',
         'ncc_logo',
         'ncc_ten',
         'ncc_diachi',
