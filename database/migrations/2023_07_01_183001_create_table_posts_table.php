@@ -17,21 +17,22 @@ class CreateTablePostsTable extends Migration
     {
         Schema::create('nhacungcap', function (Blueprint $table) {
             $table->increments('ncc_id');
-            $table->text('ncc_logo');
-            $table->text('ncc_ten');
-            $table->text('ncc_diachi');
-            $table->text('ncc_email');
-            $table->text('ncc_sodt');
-            $table->text('ncc_ngayhoatdong');
-            $table->text('ncc_makinhdoanh');
-            $table->text('ncc_chusohuu');
-            $table->text('ncc_tentknh1');
-            $table->text('ncc_sotknh1');
-            $table->text('ncc_tentknh2');
-            $table->text('ncc_sotknh2');
+            $table->string('ncc_logo')->nullable();
+            $table->string('ncc_ten');
+            $table->string('ncc_diachi');
+            $table->string('ncc_email');
+            $table->string('ncc_sodt');
+            $table->date('ncc_ngayhoatdong');
+            $table->string('ncc_makinhdoanh');
+            $table->string('ncc_chusohuu');
+            $table->string('ncc_tentknh1');
+            $table->string('ncc_sotknh1');
+            $table->string('ncc_tentknh2');
+            $table->string('ncc_sotknh2');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
