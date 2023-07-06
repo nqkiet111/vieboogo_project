@@ -34,18 +34,18 @@ class NccController extends Controller
                 'ncc_diachi' => 'required',
             ],
             [
-                'ncc_ten.required' => 'Vui lòng nhập mã bộ môn',
-                'ncc_email.required' => 'Vui lòng nhập tên bộ môn',
-                'ncc_sodt.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_ngayhoatdong.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_makinhdoanh.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_chusohuu.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_tentknh1.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_tentknh2.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_sotknh1.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_sotknh2.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_logo.required' => 'Mã bộ môn đã tồn tại',
-                'ncc_diachi.required' => 'Mã bộ môn đã tồn tại',
+                'ncc_ten.required' => 'Vui lòng nhập tên công ty',
+                'ncc_email.required' => 'Vui lòng nhập email',
+                'ncc_sodt.required' => 'Vui lòng nhập số điện thoại',
+                'ncc_ngayhoatdong.required' => 'Vui lòng nhập ngày hoạt động',
+                'ncc_makinhdoanh.required' => 'Vui lòng nhập mã kinh doanh',
+                'ncc_chusohuu.required' => 'Vui lòng nhập chủ sở hữu',
+                'ncc_tentknh1.required' => 'Vui lòng nhập tên ngân hàng 1',
+                'ncc_tentknh2.required' => 'Vui lòng nhập tên ngân hàng 2',
+                'ncc_sotknh1.required' => 'Vui lòng nhập số tài khoản ngân hàng 1',
+                'ncc_sotknh2.required' => 'Vui lòng nhập số tài khoản ngân hàng 2',
+                'ncc_logo.required' => 'Vui lòng chọn logo công ty',
+                'ncc_diachi.required' => 'Vui lòng nhập địa chỉ',
             ]
         );
         $ncc = Ncc::create([
@@ -63,6 +63,12 @@ class NccController extends Controller
             'ncc_diachi' => $request->input('ncc_diachi'),
         ]);
         $tb = Toastr::success('Thêm nhà cung cấp thành công', 'Thành công');
+        $html = Redirect::to('/admin/nhacungcap')->with('tb', $tb);
+        return response()->json(['success' => true, 'html' => $html]);
+    }
+    public function update(Request $request)
+    {
+        $tb = Toastr::success('Cập nhật nhà cung cấp thành công', 'Thành công');
         $html = Redirect::to('/admin/nhacungcap')->with('tb', $tb);
         return response()->json(['success' => true, 'html' => $html]);
     }

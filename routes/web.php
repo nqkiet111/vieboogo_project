@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\NccController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::prefix('admin')->group(function(){
     Route::get('/', function () {
         return view('Layouts.master');
@@ -23,6 +20,7 @@ Route::prefix('admin')->group(function(){
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
+        Route::get('/update', [NccController::class, 'update'])->name('ncc.update');
     });
 
 });
