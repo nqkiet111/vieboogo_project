@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function(){
     Route::prefix('quan-ly-tour')->group(function () {
         Route::get('/dm-dia-diem', [QuanlytourCotroller::class, 'index'])->name('dmdd.index');
         Route::post('/them-dia-diem', [QuanlytourCotroller::class, 'AddDiadiem'])->name('dmdd.addDiadiem');
+        Route::delete('/xoa-dm-dia-diem/{id}', [QuanlytourCotroller::class, 'DestroyDmdiadiem'])->name('dmdd.destroyDmdiadiem');
     });
 
 

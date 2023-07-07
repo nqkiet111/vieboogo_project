@@ -38,23 +38,30 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Địa điểm</th>
-                                            <th width="125">Thao tác</th>
+                                            <th style="width:14%">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
                                             $stt = 0;
                                         @endphp
-                                        @foreach ($data_dmdd as $ncc)
+                                        @foreach ($data_dmdd as $dmdiadiem)
                                             <tr>
                                                 <td>{{ ++$stt }}</td>
-                                                <td>{{ $ncc->dmdd_ten }}</td>
+                                                <td>{{ $dmdiadiem->dmdd_ten }}</td>
+                                            
+                                            <td>
+                                                <button type="button" class="btn btn-primary">Sửa</button> 
+                        
+                                                <button data-url="{{ route('dmdd.destroyDmdiadiem', $dmdiadiem->dmdd_id) }}"  type="button" class="btn btn-danger btn-delete-dmdiadiem">Xóa</button>
+                                            </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                     </tfoot>
                                 </table>
+                                {{$data_dmdd->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -66,15 +73,12 @@
             </div>
             <!-- /.container-fluid -->
         </section>
+
         <!-- /.content -->
     </div>
 
     @include('Admin.Quanlytour.addDanhmucdiadiem');
     
     <script src="{{ asset('dist/js/modal.js') }}"></script>
-    <script>
-        var saveDmddRoute = "{{ route('dmdd.addDiadiem') }}";
-        var csrfToken = "{{ csrf_token() }}";
-    </script>
     <script src="{{ asset('dist/js/admin/quanlytour.js') }}"></script>
 @endsection

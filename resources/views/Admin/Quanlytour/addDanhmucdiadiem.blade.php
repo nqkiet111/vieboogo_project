@@ -7,10 +7,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="" data-url="{{ URL('admin/quan-ly-tour/them-dia-diem') }}" method="POST" id="form-addDiadiem" role="form">
+        <form action="" data-url="{{ route('dmdd.addDiadiem') }}" method="POST" id="form-addDiadiem" role="form">
         <div class="modal-body">
-          
-          @csrf 
+          @csrf
           <input type="text" name="txtTendiadiem" id="txtTendiadiem" class="form-control" value=""/>
             <p id="result"></p>  
           
