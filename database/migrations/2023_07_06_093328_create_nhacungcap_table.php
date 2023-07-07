@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 use function Ramsey\Uuid\v1;
 
-class CreateTableNhacungcapTable extends Migration
+class CreateNhacungcapTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class CreateTableNhacungcapTable extends Migration
     {
         Schema::create('nhacungcap', function (Blueprint $table) {
             $table->increments('ncc_id');
+            $table->string('ma_ncc');
             $table->string('ncc_logo')->nullable();
             $table->string('ncc_ten');
             $table->string('ncc_diachi');
@@ -27,8 +28,9 @@ class CreateTableNhacungcapTable extends Migration
             $table->string('ncc_chusohuu');
             $table->string('ncc_tentknh1');
             $table->string('ncc_sotknh1');
-            $table->string('ncc_tentknh2');
-            $table->string('ncc_sotknh2');
+            $table->string('ncc_tentknh2')->nullable();
+            $table->string('ncc_sotknh2')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

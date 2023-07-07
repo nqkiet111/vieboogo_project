@@ -77,7 +77,20 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ URL('admin/quan-ly-tour/dm-dia-diem') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh mục địa điểm</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cập nhật tour</p>
+                </a>
+              </li>
+            </ul>
           </li>
         <li class="nav-header">Lịch trình</li>
           <li class="nav-item">

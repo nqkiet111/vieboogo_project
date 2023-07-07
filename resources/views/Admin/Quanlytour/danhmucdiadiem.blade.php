@@ -1,6 +1,7 @@
 @extends('Layouts.master')
 @section('title', 'Nhà cung cấp')
 @section('maincontent')
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -23,7 +24,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Danh sách danh mục địa điểm</h3>
                                 <div class="text-right">
-                                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#add_ncc">
+                                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#ModelThemdiadiem">
                                         Thêm
                                         mới</button>
                                 </div>
@@ -44,10 +45,10 @@
                                         @php
                                             $stt = 0;
                                         @endphp
-                                        @foreach ($data_ncc as $ncc)
+                                        @foreach ($data_dmdd as $ncc)
                                             <tr>
                                                 <td>{{ ++$stt }}</td>
-                                                <td>{{ $ncc->ncc_ten }}</td>
+                                                <td>{{ $ncc->dmdd_ten }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -67,11 +68,13 @@
         </section>
         <!-- /.content -->
     </div>
-    @include('Admin.Nhacungcap.Add')
+
+    @include('Admin.Quanlytour.addDanhmucdiadiem');
+    
     <script src="{{ asset('dist/js/modal.js') }}"></script>
     <script>
-        var saveNccRoute = "{{ route('ncc.save') }}";
+        var saveDmddRoute = "{{ route('dmdd.addDiadiem') }}";
         var csrfToken = "{{ csrf_token() }}";
     </script>
-    <script src="{{ asset('dist/js/admin/nhacungcap.js') }}"></script>
+    <script src="{{ asset('dist/js/admin/quanlytour.js') }}"></script>
 @endsection
