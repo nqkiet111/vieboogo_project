@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 use function Ramsey\Uuid\v1;
 
-class CreateTablePostsTable extends Migration
+class CreateTableNhacungcapTable extends Migration
 {
     /**
      * Run the migrations.
