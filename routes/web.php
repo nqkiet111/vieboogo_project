@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\NccController;
+use App\Http\Controllers\Admin\QuanlytourCotroller;
+use App\Models\Danhmucdiadiem;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,14 @@ Route::prefix('admin')->group(function(){
         Route::get('/delete/{ma_ncc}', [NccController::class, 'delete'])->name('ncc.delete');
 
     });
+
+    Route::prefix('quan-ly-tour')->group(function () {
+        Route::get('/dm-dia-diem', [QuanlytourCotroller::class, 'index'])->name('dmdd.index');
+        Route::post('/them-dia-diem', [QuanlytourCotroller::class, 'AddDiadiem'])->name('dmdd.addDiadiem');
+        Route::delete('/xoa-dm-dia-diem/{id}', [QuanlytourCotroller::class, 'DestroyDmdiadiem'])->name('dmdd.destroyDmdiadiem');
+    });
+
+
 
 });
 
