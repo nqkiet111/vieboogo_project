@@ -19,14 +19,12 @@ class CreatePermissionpagesTable extends Migration
             $table->unsignedBigInteger('page_id');
             $table->foreign('page_id')
                 ->references('page_id')
-                ->on('pages')
-                ->onDelete('cascade');
+                ->on('pages');
 
             $table->unsignedBigInteger('permission_id');
             $table->foreign('permission_id')
                 ->references('permission_id')
-                ->on('permissions')
-                ->onDelete('cascade');
+                ->on('permissions');
 
 
             $table->rememberToken();

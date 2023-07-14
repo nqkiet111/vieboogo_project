@@ -16,17 +16,15 @@ class CreatePermissionusersTable extends Migration
         Schema::create('permissionusers', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedBigInteger('nv_id');
-            $table->foreign('nv_id')
-                ->references('nv_id')
-                ->on('nhanvien')
-                ->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('permission_users')
+                ->references('id')
+                ->on('users');
 
             $table->unsignedBigInteger('permission_id');
             $table->foreign('permission_id')
                 ->references('permission_id')
-                ->on('permissions')
-                ->onDelete('cascade');
+                ->on('permissions');
 
 
             $table->rememberToken();
