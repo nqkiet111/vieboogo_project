@@ -16,14 +16,15 @@ class CreateNhanVienTable extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->increments('nv_id');
+            $table->string('manv');
             $table->string('fullname');
-            $table->string('sodienthoai');
-            $table->string('diachi');
+            $table->string('sodienthoai')->nullable();
+            $table->string('diachi')->nullable();
             $table->string('ramdomcode');
             $table->string('username');
             $table->string('password');
             $table->boolean('active');
-            $table->integer('countlogin');
+            $table->integer('countlogin')->nullable();
             $table->boolean('isAdmin');
 
             $table->string('email')->unique();

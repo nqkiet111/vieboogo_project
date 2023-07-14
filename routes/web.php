@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\NccController;
+use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\QuanlytourCotroller;
-use App\Models\Danhmucdiadiem;
+use App\Http\Controllers\Admin\NhanVienController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/', function () {
         return view('Layouts.master');
     });
+    Route::get('/', [PagesController::class, 'index'])->name('pages.index');
+
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
@@ -33,6 +36,9 @@ Route::prefix('admin')->group(function(){
         Route::delete('/xoa-dm-dia-diem/{id}', [QuanlytourCotroller::class, 'DestroyDmdiadiem'])->name('dmdd.destroyDmdiadiem');
     });
 
+    Route::prefix('nhanvien')->group(function () {
+        Route::get('/', [NhanVienController::class, 'index'])->name('nhanvien.index');
+    });
 
 
 });
