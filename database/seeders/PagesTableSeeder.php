@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Pages;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PagesTableSeeder extends Seeder
 {
@@ -14,17 +15,46 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-         Pages::create([
-            'parent' => 'john@example.com',
-            'display' => bcrypt('password'),
-            'title' => 'John Doe',
-            'symbol' => 'john@example.com',
-            'controller' => bcrypt('password'),
-            'hidden' => 'John Doe',
-            'sort' => 'john@example.com',
-            'remember_token' => bcrypt('password'),
-            'created_at' => bcrypt('password'),
-            'updated_at' => 'John Doe',
+        DB::table('nhanvien')->insert([
+            //comment
+            [
+                'parent' => '',
+                'display' => '',
+                'title' => '',
+                'symbol' => 'j',
+                'controller' => '',
+                'hidden' => '',
+                'sort' => '',
+                'remember_token' => '',                      
+                'created_at' => ' ' ,
+                'updated_at' => '',
+            ],
+            //comment
+            [
+                'parent' => '',
+                'display' => '',
+                'title' => '',
+                'symbol' => '',
+                'controller' => '',
+                'hidden' => '',
+                'sort' => '',
+                'remember_token' => '',
+                'created_at' => ' ',
+                'updated_at' => '',
+            ],
+            //comment
+            [
+                'parent' => '',
+                'display' => '',
+                'title' => '',
+                'symbol' => 'j',
+                'controller' => '',
+                'hidden' => '',
+                'sort' => '',
+                'remember_token' => '',
+                'created_at' => ' ',
+                'updated_at' => '',
+            ],
         ]);
     }
 }
