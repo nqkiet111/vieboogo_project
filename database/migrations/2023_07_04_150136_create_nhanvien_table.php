@@ -20,15 +20,15 @@ class CreateNhanVienTable extends Migration
             $table->string('fullname');
             $table->string('sodienthoai')->nullable();
             $table->string('diachi')->nullable();
-            $table->string('ramdomcode');
-            $table->string('username');
-            $table->string('password');
-            $table->boolean('active');
-            $table->integer('countlogin')->nullable();
-            $table->boolean('isAdmin');
-
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('nhanvien_user_id')
+            ->references('id')
+            ->on('users')
+                ->onDelete('cascade');
+
             $table->rememberToken();
             $table->timestamps();
 

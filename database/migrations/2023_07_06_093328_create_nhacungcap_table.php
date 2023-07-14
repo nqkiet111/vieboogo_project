@@ -31,6 +31,13 @@ class CreateNhacungcapTable extends Migration
             $table->string('ncc_tentknh2')->nullable();
             $table->string('ncc_sotknh2')->nullable();
             $table->boolean('status')->default(0);
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('nhacungcap_user_id')
+            ->references('id')
+            ->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
