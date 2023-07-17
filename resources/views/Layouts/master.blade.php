@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +19,6 @@
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-    
     
 
 </head>
@@ -79,6 +77,7 @@
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     <script src="{{ asset('dist/js/sweetalert2.min.js') }}"></script>
 
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -86,6 +85,11 @@
             }
         });
     </script>
+    
+    {{-- ckeditor --}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}" ></script>
+
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </body>
 
 </html>

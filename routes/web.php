@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\NccController;
 use App\Http\Controllers\Admin\QuanlytourCotroller;
-use App\Models\Danhmucdiadiem;
+use App\Http\Controllers\EditorController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,15 @@ Route::prefix('admin')->group(function(){
         Route::get('/dm-dia-diem', [QuanlytourCotroller::class, 'index'])->name('dmdd.index');
         Route::post('/them-dia-diem', [QuanlytourCotroller::class, 'AddDiadiem'])->name('dmdd.addDiadiem');
         Route::delete('/xoa-dm-dia-diem/{id}', [QuanlytourCotroller::class, 'DestroyDmdiadiem'])->name('dmdd.destroyDmdiadiem');
+
+        
+        Route::get('/cap-nhat-tour',[QuanlytourCotroller::class, 'tourIndex'])->name('tour.indexTour');
+        Route::get('/cap-nhat-tour/add-tour',[QuanlytourCotroller::class, 'addTour'])->name('tour.addTour');
+        Route::post('/cap-nhat-tour/add-tour', [QuanlytourCotroller::class, 'saveTour'])->name('tour.saveTour');
+        Route::get('/cap-nhat-tour/changeHienthiTour', [QuanlytourCotroller::class, 'changTourHienthi'])->name('tour.changeHienthiTour');
     });
+
+    Route::post('ckeditor/image_upload', [EditorController::class, 'upload'])->name('upload');
 
 
 
