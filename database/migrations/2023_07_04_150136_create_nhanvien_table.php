@@ -24,9 +24,9 @@ class CreateNhanVienTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('nhanvien_user_id')
-            ->references('id')
-            ->on('users')
+            $table->foreign('user_id')
+                ->references('user_id')
+                ->on('users')
                 ->onDelete('cascade');
 
             $table->rememberToken();

@@ -33,15 +33,15 @@ class CreateNhacungcapTable extends Migration
             $table->boolean('status')->default(0);
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('nhacungcap_user_id')
-            ->references('id')
-            ->on('users')
+            $table->foreign('user_id')
+                ->references('user_id')
+                ->on('users')
                 ->onDelete('cascade');
 
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.
