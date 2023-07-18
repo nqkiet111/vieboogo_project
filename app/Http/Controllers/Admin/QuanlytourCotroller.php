@@ -99,5 +99,28 @@ class QuanlytourCotroller extends Controller
             }
             
     } 
+
+    public function datlichtour(Request $request){
+        
+        $lichtrinhTour =  DB::table('tour')
+        ->where('tour_id', $request->xx)
+        ->first();
+        $ngaybatdau = date('Y-m-d', strtotime($lichtrinhTour->tour_ngaydi));
+        $ngayketthuc =date('Y-m-d', strtotime($lichtrinhTour->tour_ngayve));
+
+        $date1 = $ngaybatdau;
+        $date2 = $ngayketthuc;
+
+        $diff = abs(strtotime($date2) - strtotime($date1));
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+        if($days == 0){
+            $days +=1;
+        }
+        $html = view('Admin.Quanlytour.htmlAddLichtrinhtour', compact('days'));
+        return response()->json(['html' => "$html"],200);
+    }
     
 }

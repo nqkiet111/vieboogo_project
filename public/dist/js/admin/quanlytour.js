@@ -229,6 +229,47 @@ function tourHienthi(id){
 }
 
 function DatlichTour(id){
+    $.ajax({
+        url: './cap-nhat-tour/dat-lichtour',
+        data: {
+            xx: id
+        },
+        success: function(response){
+            $('#div-fromLichtrinh').empty();
+            $('#div-fromLichtrinh').append(response['html']); 
+        }
+    })
     $('#modal_datlichtour').modal('show');
+    
 }
+
+function themformDatlich(positionEl){
+    var i=0;
+    $("div").each(function(){
+        if($(this).attr("id") == "formLichtrinh_"+positionEl)
+          i++;
+    });
+    $('#numElmNgay_'+positionEl).val(i+1);
+    $('#formMore_'+positionEl).append("<i class='fa fa-circle' style='color:green' aria-hidden='true'></i><div class='form-group' id='formLichtrinh_"+positionEl+"'><label for='inputPassword6'>Tên hoạt động: </label><input type='text' id='txtTenhoatdong' name='txtTenhoatdong' class='form-control mx-sm-3'><label for='inputPassword6'>Thời gian: </label><input type='datetime-local' id='txtThoigian' name='txtThoigian' class='form-control mx-sm-3'><label for='inputPassword6'>Mô tả: </label><input type='text' id='txtMota' name='txtMota' class='form-control mx-sm-3'><label for='inputPassword6'>Hình ảnh: </label><input type='file' id='anhNgaylichtrinh' name='anhNgaylichtrinh' class='form-control mx-sm-3'></div>");
+}
+
+function ResetLich(Elform){
+    $('#formMore_'+Elform).empty();
+}
+
+// function them(){
+//     var i=0;
+//         $("div").each(function(){
+//             if($(this).attr("id") == "formLichtrinh")
+//               i++;
+//         });
+//     $('#numElm').val(i+1);
+//     $('#div-fromLichtrinh').append("<div class='form-group' id='formLichtrinh_'><label for='inputPassword6'>Tên hoạt động: </label><input type='text' id='txtTenhoatdong' name='txtTenhoatdong' class='form-control mx-sm-3'><label for='inputPassword6'>Thời gian: </label><input type='time' id='txtThoigian' name='txtThoigian' class='form-control mx-sm-3'><label for='inputPassword6'>Mô tả: </label><input type='time' id='txtMota' name='txtMota' class='form-control mx-sm-3'><label for='inputPassword6'>Hình ảnh: </label><input type='time' id='txtMota' name='txtMota' class='form-control mx-sm-3'></div>");
+// }
+
+function LuulichtrinhtheoNgay(valEl){
+ 
+
+}
+
 

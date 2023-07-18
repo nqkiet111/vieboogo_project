@@ -40,6 +40,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/cap-nhat-tour/add-tour',[QuanlytourCotroller::class, 'addTour'])->name('tour.addTour');
         Route::post('/cap-nhat-tour/add-tour', [QuanlytourCotroller::class, 'saveTour'])->name('tour.saveTour');
         Route::get('/cap-nhat-tour/changeHienthiTour', [QuanlytourCotroller::class, 'changTourHienthi'])->name('tour.changeHienthiTour');
+        Route::get('/cap-nhat-tour/dat-lichtour', [QuanlytourCotroller::class, 'datlichtour'])->name('tour.datlichtour');
     });
 
 
