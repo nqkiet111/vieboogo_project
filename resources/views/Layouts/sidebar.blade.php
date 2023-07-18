@@ -36,11 +36,12 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 {{-- <li class="nav-header">Nhà cung cấp</li> --}}
-                @foreach ($pages as $page)
+                <?php use App\Utils\PagesPublic; ?>
+                @foreach (PagesPublic::Pages() as $page)
                     {{-- parent --}}
                     @if ($page->parent == 0)
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href= {{ url( $page->controller ) }} class="nav-link">
                                 <i class="{{ $page->symbol }}"></i>
                                 <p>
                                     {{ $page->title }}
@@ -48,11 +49,11 @@
                                 </p>
                             </a>
                             {{-- hasParent --}}
-                            @foreach ($pages as $page1)
+                            @foreach (PagesPublic::Pages() as $page1)
                                 @if ($page1->parent != 0 && $page1->parent == $page->page_id)
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{$page1->controller}}" class="nav-link">
+                                            <a  href= {{ url( $page1->controller ) }} class="nav-link">
                                                 <i class="{{ $page1->symbol }}"></i>
                                                 <p>{{ $page1->title }}</p>
                                             </a>

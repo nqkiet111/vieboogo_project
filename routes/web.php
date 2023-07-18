@@ -20,8 +20,6 @@ Route::prefix('admin')->group(function(){
     Route::get('/', function () {
         return view('Layouts.master');
     });
-    Route::get('/', [PagesController::class, 'index'])->name('pages.index');
-
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
