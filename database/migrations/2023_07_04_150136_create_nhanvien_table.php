@@ -16,18 +16,19 @@ class CreateNhanVienTable extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->increments('nv_id');
+            $table->string('manv');
             $table->string('fullname');
-            $table->string('sodienthoai');
-            $table->string('diachi');
-            $table->string('ramdomcode');
-            $table->string('username');
-            $table->string('password');
-            $table->boolean('active');
-            $table->integer('countlogin');
-            $table->boolean('isAdmin');
-
+            $table->string('sodienthoai')->nullable();
+            $table->string('diachi')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('nhanvien_user_id')
+            ->references('id')
+            ->on('users')
+                ->onDelete('cascade');
+
             $table->rememberToken();
             $table->timestamps();
 

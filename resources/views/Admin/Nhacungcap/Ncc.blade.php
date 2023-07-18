@@ -54,7 +54,8 @@
                                                 <td>{{ $ncc->ncc_sodt }}</td>
                                                 <td class="text-center">
                                                     <a class="btn btn-sm btn-info" data-toggle="modal"
-                                                        data-ma_ncc="{{ $ncc->ma_ncc }}" data-ncc_ten="{{ $ncc->ncc_ten }}"
+                                                        data-ma_ncc="{{ $ncc->ma_ncc }}"
+                                                        data-ncc_ten="{{ $ncc->ncc_ten }}"
                                                         data-ncc_diachi="{{ $ncc->ncc_diachi }}"
                                                         data-ncc_email="{{ $ncc->ncc_email }}"
                                                         data-ncc_sodt="{{ $ncc->ncc_sodt }}"
@@ -113,6 +114,7 @@
     <script src="{{ asset('dist/js/modal.js') }}"></script>
     <script>
         var saveNccRoute = "{{ route('ncc.save') }}";
+        var updateNccRoute = "{{ route('ncc.update') }}";
         var csrfToken = "{{ csrf_token() }}";
     </script>
     <script src="{{ asset('dist/js/admin/nhacungcap.js') }}"></script>

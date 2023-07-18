@@ -66,15 +66,13 @@ $("#update_ncc").on("show.bs.modal", function (event) {
 
     $("#edit_ncc").on("submit", function (event) {
         event.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-        });
+        // Lấy thông tin form
+        var formData = new FormData(this);
+        formData.append("_token", csrfToken);
         $.ajax({
             type: "POST",
-            url: "{{route('ncc.update')}}",
-            data: new FormData(this),
+            url: updateNccRoute,
+            data: formData,
             dataType: "JSON",
             contentType: false,
             cache: false,
@@ -132,29 +130,19 @@ $("#detail_ncc").on("show.bs.modal", function (event) {
 
 function deleteConfirmation(maNCC) {
     Swal.fire({
-        title: 'Xác nhận xóa?',
-        text: 'Bạn chắc chắn muốn xóa nhà cung cấp này?',
-        icon: 'warning',
+        title: "Xác nhận xóa?",
+        text: "Bạn chắc chắn muốn xóa nhà cung cấp này?",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Đồng ý',
-        cancelButtonText: 'Hủy'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Đồng ý",
+        cancelButtonText: "Hủy",
     }).then((result) => {
         if (result.isConfirmed) {
             // Chuyển hướng đến route xóa
-            window.location.href = "/admin/nhacungcap/delete/" + maNCC.replace(/\//g, '-');
+            window.location.href =
+                "/admin/nhacungcap/delete/" + maNCC.replace(/\//g, "-");
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-

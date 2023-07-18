@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\NccController;
+use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\QuanlytourCotroller;
-use App\Http\Controllers\EditorController;
+use App\Models\Danhmucdiadiem;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,12 @@ Route::prefix('admin')->group(function(){
     Route::get('/', function () {
         return view('Layouts.master');
     });
+    Route::get('/', [PagesController::class, 'index'])->name('pages.index');
+
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
-        Route::get('/update', [NccController::class, 'update'])->name('ncc.update');
+        Route::post('/update', [NccController::class, 'update'])->name('ncc.update');
         Route::get('/delete/{ma_ncc}', [NccController::class, 'delete'])->name('ncc.delete');
 
     });
@@ -38,8 +41,6 @@ Route::prefix('admin')->group(function(){
         Route::post('/cap-nhat-tour/add-tour', [QuanlytourCotroller::class, 'saveTour'])->name('tour.saveTour');
         Route::get('/cap-nhat-tour/changeHienthiTour', [QuanlytourCotroller::class, 'changTourHienthi'])->name('tour.changeHienthiTour');
     });
-
-    Route::post('ckeditor/image_upload', [EditorController::class, 'upload'])->name('upload');
 
 
 

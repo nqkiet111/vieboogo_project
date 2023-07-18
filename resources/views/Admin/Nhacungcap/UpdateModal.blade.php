@@ -8,16 +8,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="edit_ncc" enctype="multipart/form-data">
-                @csrf 
+            <form id="edit_ncc" method="POST" enctype="multipart/form-data">
                 <div class="modal-body"  style="overflow-y: auto;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Tên nhà cung cấp</label>
+                                    <input type="text" class="form-control" name="ma_ncc" id="ma_ncc" >
                                     <input type="text" class="form-control ncc_ten" name="ncc_ten" id="ncc_ten"  autocomplete="off">
-                                    <input type="text" class="form-control " value="" name="ma_ncc" id="ma_ncc" hidden>
                                     <span class="text-danger font-weight-bold" id="ncc_tenErrorUpdate"></span>
                                 </div>
                             </div>
@@ -94,8 +93,7 @@
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <textarea type="text" class="form-control ncc_diachi" name="ncc_diachi" id="ncc_diachi">
-                            </textarea>
+                            <textarea type="text" class="form-control ncc_diachi" name="ncc_diachi" id="ncc_diachi"></textarea>
                             <span class="text-danger font-weight-bold" id="ncc_diachiErrorUpdate"></span>
                         </div>
                     </div>

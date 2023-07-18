@@ -16,10 +16,10 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('page_id');
             $table->integer('parent');
-            $table->string('display');
+            $table->string('display')->nullable();
             $table->string('title');
-            $table->string('symbol');
-            $table->string('controller');
+            $table->string('symbol')->nullable();
+            $table->string('controller')->nullable();
             $table->boolean('hidden');
             $table->integer('sort');
 
