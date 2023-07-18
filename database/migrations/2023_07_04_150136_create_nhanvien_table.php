@@ -22,7 +22,6 @@ class CreateNhanVienTable extends Migration
             $table->string('diachi')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-
             $table->unsignedBigInteger('user_id');
             $table->foreign('nhanvien_user_id')
             ->references('id')
