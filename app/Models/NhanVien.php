@@ -39,4 +39,8 @@ class NhanVien extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+   public function Tour(){
+    return $this->hasMany(Tour::class, 'tour_id');
+   }
 }

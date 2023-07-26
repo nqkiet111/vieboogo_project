@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Danhmucdiadiem;
+use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Validator;
 class QuanlytourCotroller extends Controller
 {
     public function index(){
@@ -35,6 +36,91 @@ class QuanlytourCotroller extends Controller
             return response()->json(['status' => false], 200);
         }
         
+    }
+
+    // CAP NHAT TOUR
+
+    public function tourIndex(){
+        $listTour = DB::table('tour')->get();
+       return view('Admin.Quanlytour.capnhattour', compact('listTour'));
+    }
+
+
+    public function addTour(){
+        $listDmdiadiem = Danhmucdiadiem::all();
+        return view('Admin.Quanlytour.addTour', compact('listDmdiadiem'));
+    }
+
+    public function changTourHienthi(Request $request){
+
+        
+        if($request->Valhienthi == 1 || $request-> Valhienthi == 0){
+            if($request->Valhienthi == 1){
+                DB::table('tour')
+              ->where('tour_id', $request->xx)
+              ->update(['tour_hienthi' => 0]);
+            }
+
+            if($request->Valhienthi == 0){
+                DB::table('tour')
+              ->where('tour_id', $request->xx)
+              ->update(['tour_hienthi' => 1]);
+            }
+
+        }else{
+            return response()->json(['status' => false], 200);
+        }
+    }
+    public function saveTour(Request $request){
+        
+
+            if($request->hasFile('anhTour')){
+                $file = $request->file('anhTour');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' .$extension;
+                $file->move('uploads/avtTours/', $filename);
+                $tour = new Tour();
+                $id = 'TOUR_' . (mt_rand() . time());
+                $tour->tour_id = $id;
+                // $tour->tour_idnv = '1';
+                $tour->tour_iddmdd = $request->selectDiadiem;
+                $tour->tour_anhtour = $filename;
+                $tour->tour_ten = $request->txtTentour;
+                $tour->tour_ngaydi = $request->txtNgaydi;
+                $tour->tour_ngayve = $request->txtNgayve;
+                $tour->tour_soluongngay = $request->txtSoluongngay;
+                $tour->tour_soluongnguoilon = $request->slnguoilon;
+                $tour->tour_soluongtrem = $request->sltreem;
+                $tour->tour_mota = $request->mota;
+                $tour->tour_hienthi = '1';
+                $tour->tour_trangthai = '1';
+                $tour->save();
+                return response()->json(['status' => true], 200);
+            }
+            
+    } 
+
+    public function datlichtour(Request $request){
+        
+        $lichtrinhTour =  DB::table('tour')
+        ->where('tour_id', $request->xx)
+        ->first();
+        $ngaybatdau = date('Y-m-d', strtotime($lichtrinhTour->tour_ngaydi));
+        $ngayketthuc =date('Y-m-d', strtotime($lichtrinhTour->tour_ngayve));
+
+        $date1 = $ngaybatdau;
+        $date2 = $ngayketthuc;
+
+        $diff = abs(strtotime($date2) - strtotime($date1));
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+        if($days == 0){
+            $days +=1;
+        }
+        $html = view('Admin.Quanlytour.htmlAddLichtrinhtour', compact('days'));
+        return response()->json(['html' => "$html"],200);
     }
     
 }

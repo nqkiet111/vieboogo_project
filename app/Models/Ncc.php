@@ -25,4 +25,8 @@ class Ncc extends Model
         'ncc_tentknh2',
         'ncc_sotknh2'
     ];
+
+    public function Tour(){
+        return $this->hasMany(Tour::class, 'tour_id');
+    }
 }

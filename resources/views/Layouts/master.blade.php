@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,8 +100,9 @@
             $('.select2').select2()
         });
     </script>
+    {{-- ckeditor --}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}" ></script>
 
-
-</body>
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 
 </html>
