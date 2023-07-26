@@ -22,8 +22,11 @@ Route::prefix('admin')->group(function(){
     });
     Route::prefix('nhacungcap')->group(function () {
         Route::get('/', [NccController::class, 'index'])->name('ncc.index');
+
+
         Route::post('/save', [NccController::class, 'save'])->name('ncc.save');
         Route::post('/update', [NccController::class, 'update'])->name('ncc.update');
+        Route::post('/search', [NccController::class, 'search'])->name('ncc.search');
         Route::get('/delete/{ma_ncc}', [NccController::class, 'delete'])->name('ncc.delete');
 
     });

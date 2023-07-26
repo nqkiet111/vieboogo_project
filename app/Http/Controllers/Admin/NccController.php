@@ -155,4 +155,13 @@ class NccController extends Controller
         Toastr::success('Xóa nhà cung cấp thành công!!!', 'Thành công');
         return redirect()->route('ncc.index');
     }
+    
+    
+    
+    
+    
+    
+    
+       
+    
 }

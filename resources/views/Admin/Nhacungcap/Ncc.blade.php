@@ -21,13 +21,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Danh sách nhà cung cấp</h3>
                                 <div class="text-right">
-                                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#add_ncc">
-                                        Thêm
-                                        mới</button>
-                                </div>
-                                <div class="text-center">
+                                    <button class="btn btn-success text-right" data-toggle="modal" data-target="#add_ncc"><i class="fa fa-plus"> </i></button>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -39,58 +34,59 @@
                                             <th>Tên nhà cung cấp</th>
                                             <th>Địa chỉ</th>
                                             <th>Số điện thoại</th>
-                                            <th width="300">Thao tác</th>
+                                            <th width="150">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $stt = 0;
-                                        @endphp
-                                        @foreach ($data_ncc as $ncc)
-                                            <tr>
-                                                <td>{{ ++$stt }}</td>
-                                                <td>{{ $ncc->ncc_ten }}</td>
-                                                <td>{{ $ncc->ncc_diachi }}</td>
-                                                <td>{{ $ncc->ncc_sodt }}</td>
-                                                <td class="text-center">
-                                                    <a class="btn btn-sm btn-info" data-toggle="modal"
-                                                        data-ma_ncc="{{ $ncc->ma_ncc }}"
-                                                        data-ncc_ten="{{ $ncc->ncc_ten }}"
-                                                        data-ncc_diachi="{{ $ncc->ncc_diachi }}"
-                                                        data-ncc_email="{{ $ncc->ncc_email }}"
-                                                        data-ncc_sodt="{{ $ncc->ncc_sodt }}"
-                                                        data-ncc_ngayhoatdong="{{ $ncc->ncc_ngayhoatdong }}"
-                                                        data-ncc_makinhdoanh="{{ $ncc->ncc_makinhdoanh }}"
-                                                        data-ncc_chusohuu="{{ $ncc->ncc_chusohuu }}"
-                                                        data-ncc_tentknh1="{{ $ncc->ncc_tentknh1 }}"
-                                                        data-ncc_sotknh1="{{ $ncc->ncc_sotknh1 }}"
-                                                        data-ncc_tentknh2="{{ $ncc->ncc_tentknh2 }}"
-                                                        data-ncc_sotknh2="{{ $ncc->ncc_sotknh2 }}"
-                                                        data-target="#update_ncc"><i class="fa fa-pen">
-                                                            Cập nhật</i></a>
-                                                    <a class="btn btn-sm btn-warning" data-toggle="modal"
-                                                        data-ma_ncc="{{ $ncc->ma_ncc }}"
-                                                        data-ncc_ten="{{ $ncc->ncc_ten }}"
-                                                        data-ncc_diachi="{{ $ncc->ncc_diachi }}"
-                                                        data-ncc_email="{{ $ncc->ncc_email }}"
-                                                        data-ncc_sodt="{{ $ncc->ncc_sodt }}"
-                                                        data-ncc_ngayhoatdong="{{ $ncc->ncc_ngayhoatdong }}"
-                                                        data-ncc_makinhdoanh="{{ $ncc->ncc_makinhdoanh }}"
-                                                        data-ncc_chusohuu="{{ $ncc->ncc_chusohuu }}"
-                                                        data-ncc_tentknh1="{{ $ncc->ncc_tentknh1 }}"
-                                                        data-ncc_sotknh1="{{ $ncc->ncc_sotknh1 }}"
-                                                        data-ncc_tentknh2="{{ $ncc->ncc_tentknh2 }}"
-                                                        data-ncc_sotknh2="{{ $ncc->ncc_sotknh2 }}"
-                                                        data-target="#detail_ncc"><i class="fa fa-eye">
-                                                            Chi tiết</i></a>
-                                                    <a href="{{ route('ncc.delete', str_replace('/', '-', $ncc->ma_ncc)) }}"
-                                                        onclick="event.preventDefault(); deleteConfirmation('{{ $ncc->ma_ncc }}');"
-                                                        class="btn btn-sm btn-danger">
-                                                        <i class="fa fa-trash"> Xóa </i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+
+                                            @php
+                                                $stt = 0;
+                                            @endphp
+                                            @foreach ($data_ncc as $ncc)
+                                                <tr>
+                                                    <td>{{ ++$stt }}</td>
+                                                    <td>{{ $ncc->ncc_ten }}</td>
+                                                    <td>{{ $ncc->ncc_diachi }}</td>
+                                                    <td>{{ $ncc->ncc_sodt }}</td>
+                                                    <td class="text-center">
+                                                        <a class="btn btn-sm btn-info" data-toggle="modal"
+                                                            data-ma_ncc="{{ $ncc->ma_ncc }}"
+                                                            data-ncc_ten="{{ $ncc->ncc_ten }}"
+                                                            data-ncc_diachi="{{ $ncc->ncc_diachi }}"
+                                                            data-ncc_email="{{ $ncc->ncc_email }}"
+                                                            data-ncc_sodt="{{ $ncc->ncc_sodt }}"
+                                                            data-ncc_ngayhoatdong="{{ $ncc->ncc_ngayhoatdong }}"
+                                                            data-ncc_makinhdoanh="{{ $ncc->ncc_makinhdoanh }}"
+                                                            data-ncc_chusohuu="{{ $ncc->ncc_chusohuu }}"
+                                                            data-ncc_tentknh1="{{ $ncc->ncc_tentknh1 }}"
+                                                            data-ncc_sotknh1="{{ $ncc->ncc_sotknh1 }}"
+                                                            data-ncc_tentknh2="{{ $ncc->ncc_tentknh2 }}"
+                                                            data-ncc_sotknh2="{{ $ncc->ncc_sotknh2 }}"
+                                                            data-target="#update_ncc"><i class="fa fa-pen">
+                                                                </i></a>
+                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            data-ma_ncc="{{ $ncc->ma_ncc }}"
+                                                            data-ncc_ten="{{ $ncc->ncc_ten }}"
+                                                            data-ncc_diachi="{{ $ncc->ncc_diachi }}"
+                                                            data-ncc_email="{{ $ncc->ncc_email }}"
+                                                            data-ncc_sodt="{{ $ncc->ncc_sodt }}"
+                                                            data-ncc_ngayhoatdong="{{ $ncc->ncc_ngayhoatdong }}"
+                                                            data-ncc_makinhdoanh="{{ $ncc->ncc_makinhdoanh }}"
+                                                            data-ncc_chusohuu="{{ $ncc->ncc_chusohuu }}"
+                                                            data-ncc_tentknh1="{{ $ncc->ncc_tentknh1 }}"
+                                                            data-ncc_sotknh1="{{ $ncc->ncc_sotknh1 }}"
+                                                            data-ncc_tentknh2="{{ $ncc->ncc_tentknh2 }}"
+                                                            data-ncc_sotknh2="{{ $ncc->ncc_sotknh2 }}"
+                                                            data-target="#detail_ncc"><i class="fa fa-eye">
+                                                            </i></a>
+                                                        <a href="{{ route('ncc.delete', str_replace('/', '-', $ncc->ma_ncc)) }}"
+                                                            onclick="event.preventDefault(); deleteConfirmation('{{ $ncc->ma_ncc }}');"
+                                                            class="btn btn-sm btn-danger">
+                                                            <i class="fa fa-trash"> </i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                     </tbody>
                                     <tfoot>
                                     </tfoot>

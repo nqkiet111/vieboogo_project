@@ -32,7 +32,7 @@ class CreateNhacungcapTable extends Migration
             $table->string('ncc_sotknh2')->nullable();
             $table->boolean('status')->default(0);
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
                 ->references('user_id')
                 ->on('users')

@@ -114,20 +114,33 @@ $("#detail_ncc").on("show.bs.modal", function (event) {
     var ncc_tentknh2 = button.data("ncc_tentknh2");
     var ncc_sotknh2 = button.data("ncc_sotknh2");
     var modal = $(this);
-    modal.find(".modal-body #ma_ncc").val(ma_ncc);
-    modal.find(".modal-body #ncc_ten").val(ncc_ten);
-    modal.find(".modal-body #ncc_diachi").val(ncc_diachi);
-    modal.find(".modal-body #ncc_email").val(ncc_email);
-    modal.find(".modal-body #ncc_sodt").val(ncc_sodt);
-    modal.find(".modal-body #ncc_ngayhoatdong").val(ncc_ngayhoatdong);
-    modal.find(".modal-body #ncc_makinhdoanh").val(ncc_makinhdoanh);
-    modal.find(".modal-body #ncc_chusohuu").val(ncc_chusohuu);
-    modal.find(".modal-body #ncc_tentknh1").val(ncc_tentknh1);
-    modal.find(".modal-body #ncc_sotknh1").val(ncc_sotknh1);
-    modal.find(".modal-body #ncc_tentknh2").val(ncc_tentknh2);
-    modal.find(".modal-body #ncc_sotknh2").val(ncc_sotknh2);
+    modal.find(".modal-body #ma_ncc").text("Mã số: " + ma_ncc);
+    modal.find(".modal-body #ncc_ten").text("Công ty: " + ncc_ten);
+    modal.find(".modal-body #ncc_diachi").text("Địa chỉ: " + ncc_diachi);
+    modal.find(".modal-body #ncc_email").text("Email: " + ncc_email);
+    modal.find(".modal-body #ncc_sodt").text("Số điện thoại: " + ncc_sodt);
+    modal
+        .find(".modal-body #ncc_ngayhoatdong")
+        .text("Ngày hoạt động: " + ncc_ngayhoatdong);
+    modal
+        .find(".modal-body #ncc_makinhdoanh")
+        .text("Mã kinh doanh: " + ncc_makinhdoanh);
+    modal.find(".modal-body #ncc_chusohuu").text("Đại diện: " + ncc_chusohuu);
+    modal
+        .find(".modal-body #ncc_tentknh1")
+        .text("Tên tài khoản 1: " + ncc_tentknh1);
+    modal
+        .find(".modal-body #ncc_sotknh1")
+        .text("Số tài khoản 1: " + ncc_sotknh1);
+    modal
+        .find(".modal-body #ncc_tentknh2")
+        .text("Tên tài khoản 2: " + ncc_tentknh2);
+    modal
+        .find(".modal-body #ncc_sotknh2")
+        .text("Số tài khoản 2: " + ncc_sotknh2);
 });
 
+//confirm xóa
 function deleteConfirmation(maNCC) {
     Swal.fire({
         title: "Xác nhận xóa?",
@@ -146,3 +159,15 @@ function deleteConfirmation(maNCC) {
         }
     });
 }
+
+//search nhà cung cấp
+$(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+
+
+
+
